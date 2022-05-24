@@ -5,7 +5,7 @@ export default function TodoListItem(props) {
   return (
     //
     <li>
-      {item.title} <button onClick={() => props.onRemoveTodo(item.id)}>Remove</button>
+      {item.fields.Title} <button onClick={() => props.onRemoveTodo(item.id)}>Remove</button>
     </li>
   );
 }
