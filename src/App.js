@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AddTodoForm from "./AddTodoForm";
 import TodoList from "./TodoList";
 
@@ -13,9 +14,11 @@ function App() {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result.records);
         setTodoList(result.records);
         setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }, []);
 
@@ -32,18 +35,37 @@ function App() {
   }
 
   function removeTodo(id) {
-    console.log(id);
     const updatedList = todoList.filter((todo) => todo.id !== id);
     setTodoList(updatedList);
   }
 
   return (
-    <>
-      <h1>Todo List</h1>
-      <AddTodoForm onAddTodo={addTodo} />
-      {isLoading ? <p>Loading...</p> : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />}
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home onAddTodo={addTodo} isLoading={isLoading} todoList={todoList} onRemoveTodo={removeTodo} />} />
+        <Route path="/new" element={<New />} />
+      </Routes>
+    </Router>
   );
 }
+
+const Home = (props) => {
+  console.log(props.isLoading);
+  return (
+    <>
+      <h1>Todo List</h1>
+      <AddTodoForm onAddTodo={props.addTodo} />
+      {props.isLoading ? <p>Loading...</p> : <TodoList todoList={props.todoList} onRemoveTodo={props.removeTodo} />}
+    </>
+  );
+};
+
+const New = () => {
+  return (
+    <>
+      <h1>New Todo List</h1>
+    </>
+  );
+};
 
 export default App;
