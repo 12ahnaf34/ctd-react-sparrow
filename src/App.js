@@ -42,8 +42,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home onAddTodo={addTodo} isLoading={isLoading} todoList={todoList} onRemoveTodo={removeTodo} />} />
-        <Route path="/new" element={<New />} />
+        <Route path="/" exact element={<Home onAddTodo={addTodo} isLoading={isLoading} todoList={todoList} onRemoveTodo={removeTodo} />} />
+        <Route path="/new" exact element={<New />} />
       </Routes>
     </Router>
   );
