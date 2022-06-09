@@ -1,0 +1,75 @@
+body {
+  background-color: #000;
+  color: #ccc;
+  font-family: Calibri;
+  font-size: 1.25vw;
+}
+
+a {
+  margin: 10px;
+  font-size: 2vw;
+  text-decoration: none;
+  color: azure;
+}
+
+h1 {
+  color: seagreen;
+  font-size: 4vw;
+  font-weight: 600;
+  margin: 0;
+}
+
+input {
+  background-color: azure;
+  border: 2px solid black;
+}
+
+label {
+  font-weight: 600;
+  margin: 5px;
+}
+
+.addButton {
+  background-color: darkgreen;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.addButton:hover {
+  background-color: rgb(123, 195, 40);
+  color: black;
+  font-weight: bold;
+}
+
+.checklistIcon {
+  margin-top: 20px;
+  height: 80px;
+  width: 80px;
+}
+
+.removeButton {
+  color: #fff;
+  font-weight: 600;
+  background-color: brown;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.todoList {
+  border: 5px solid white;
+  padding: 50px 40px;
+  width: fit-content;
+  margin-left: 2vw;
+}
+
+@media (max-width: 500px) {
+  input {
+    width: 50vw;
+  }
+  .removeButton {
+    font-size: 6vw;
+  }
+}
