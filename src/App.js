@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import AddTodoForm from "./components/AddTodoForm";
-import TodoList from "./components/TodoList";
+import AddTodoForm from "./AddTodoForm";
+import TodoList from "./TodoList";
 import style from "./styles.module.css";
 import checklistIcon from "./svgs/checklist.svg";
 
