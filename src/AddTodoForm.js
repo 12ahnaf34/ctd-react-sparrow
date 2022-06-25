@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import InputWithLabel from "./InputWithLabel";
+import style from "./styles.module.css";
 
 const AddTodoForm = (props) => {
   const { onAddTodo } = props;
@@ -24,7 +25,9 @@ const AddTodoForm = (props) => {
       <InputWithLabel todoTitle={todoTitle} handleTitleChange={handleTitleChange}>
         Title
       </InputWithLabel>
-      <button type="submit">Add</button>
+      <button className={style.addButton} type="submit">
+        Add
+      </button>
     </form>
   );
 };

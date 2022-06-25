@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import AddTodoForm from "./AddTodoForm";
 import TodoList from "./TodoList";
+import style from "./styles.module.css";
+import checklistIcon from "./svgs/checklist.svg";
 
 function App() {
   //This is the list of todo items
@@ -35,12 +37,17 @@ function App() {
   }
 
   function removeTodo(id) {
+    console.log(id);
     const updatedList = todoList.filter((todo) => todo.id !== id);
     setTodoList(updatedList);
   }
 
   return (
     <Router>
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/new">New</Link>
+      </nav>
       <Routes>
         <Route path="/" exact element={<Home onAddTodo={addTodo} isLoading={isLoading} todoList={todoList} onRemoveTodo={removeTodo} />} />
         <Route path="/new" exact element={<New />} />
@@ -50,13 +57,13 @@ function App() {
 }
 
 const Home = (props) => {
-  console.log(props.isLoading);
   return (
-    <>
+    <div className="container">
+      <img className={style.checklistIcon} src={checklistIcon} />
       <h1>Todo List</h1>
       <AddTodoForm onAddTodo={props.addTodo} />
-      {props.isLoading ? <p>Loading...</p> : <TodoList todoList={props.todoList} onRemoveTodo={props.removeTodo} />}
-    </>
+      {props.isLoading ? <p>Loading...</p> : <TodoList todoList={props.todoList} onRemoveTodo={props.onRemoveTodo} />}
+    </div>
   );
 };
 
