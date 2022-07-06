@@ -1,8 +1,6 @@
 import Airtable from "airtable";
 import React from "react";
 
-const base = new Airtable({ apiKey: "keyYsPzdK44dRGy6F" }).base("appKF1Bhdb3sx1dpu");
-
 function fetchTodo() {
   console.log("Fetch");
 }
