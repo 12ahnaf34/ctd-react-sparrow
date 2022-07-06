@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import InputWithLabel from "./InputWithLabel";
-import style from "../styles.module.css";
-import PropTypes from "prop-types";
+import style from "./styles.module.css";
 
 const AddTodoForm = (props) => {
-  const { onAddTodo } = props;
+  const { setTodoList, todoList, onAddTodo } = props;
   //This sets the name of the todo item
   const [todoTitle, setTodoTitle] = useState("");
 
@@ -17,7 +16,9 @@ const AddTodoForm = (props) => {
   //Passes new todo object to App.js->addTodo function
   const handleAddTodo = (event) => {
     event.preventDefault();
-    onAddTodo({ title: todoTitle, id: Date.now() });
+    setTodoTitle(todoTitle);
+
+    onAddTodo(todoTitle);
     setTodoTitle("");
   };
 
@@ -31,14 +32,6 @@ const AddTodoForm = (props) => {
       </button>
     </form>
   );
-};
-
-AddTodoForm.propTypes = {
-  onAddTodo: PropTypes.func,
-  todoTitle: PropTypes.string,
-  handleTitleChange: PropTypes.func,
-  newTodoTitle: PropTypes.string,
-  handleAddTodo: PropTypes.func,
 };
 
 export default AddTodoForm;
