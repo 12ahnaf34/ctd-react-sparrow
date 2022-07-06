@@ -4,8 +4,6 @@ import style from "./TodoListItem.module.css";
 import Airtable from "airtable";
 import TodoList from "./TodoList";
 
-const base = new Airtable({ apiKey: "keyYsPzdK44dRGy6F" }).base("appKF1Bhdb3sx1dpu");
-
 function TodoListItem(props) {
   const { item, todoList, setTodoList } = props;
 
