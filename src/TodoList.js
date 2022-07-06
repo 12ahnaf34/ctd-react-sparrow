@@ -3,11 +3,12 @@ import TodoListItem from "./TodoListItem";
 import style from "./styles.module.css";
 
 const TodoList = (props) => {
-  const { todoList, onRemoveTodo } = props;
+  const { todoList, setTodoList } = props;
+
   return (
     <ul className={style.todoList}>
       {todoList.map(function (item) {
-        return <TodoListItem onRemoveTodo={onRemoveTodo} key={item.id} item={item} />;
+        return <TodoListItem item={item} todoList={todoList} setTodoList={setTodoList} />;
       })}
     </ul>
   );

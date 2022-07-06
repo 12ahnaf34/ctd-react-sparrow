@@ -4,42 +4,22 @@ import AddTodoForm from "./AddTodoForm";
 import TodoList from "./TodoList";
 import style from "./styles.module.css";
 import checklistIcon from "./svgs/checklist.svg";
+import Airtable, { createTodo, initialFetchList } from "./api/Airtable";
+import fetchTodo from "./api/Airtable";
+
+// const base = new Airtable({ apiKey: "keyYsPzdK44dRGy6F" }).base("appKF1Bhdb3sx1dpu");
 
 function App() {
-  //This is the list of todo items
+  //This is the list of todo items and a state checker to see if page is loading
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/default`, {
-      headers: { Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}` },
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        setTodoList(result.records);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    initialFetchList(setTodoList, setIsLoading);
   }, []);
 
-  //Stores the list of todo items in localstorage
-  useEffect(() => {
-    if (isLoading === false) {
-      localStorage.setItem("savedTodoList", JSON.stringify(todoList));
-    }
-  }, [todoList]);
-
-  //Adds a new todo item to the todo list
   function addTodo(newTodo) {
-    setTodoList([...todoList, newTodo]);
-  }
-
-  function removeTodo(id) {
-    console.log(id);
-    const updatedList = todoList.filter((todo) => todo.id !== id);
-    setTodoList(updatedList);
+    createTodo(newTodo, todoList, setTodoList);
   }
 
   return (
@@ -49,7 +29,7 @@ function App() {
         <Link to="/new">New</Link>
       </nav>
       <Routes>
-        <Route path="/" exact element={<Home onAddTodo={addTodo} isLoading={isLoading} todoList={todoList} onRemoveTodo={removeTodo} />} />
+        <Route path="/" exact element={<Home isLoading={isLoading} todoList={todoList} setTodoList={setTodoList} onAddTodo={addTodo} />} />
         <Route path="/new" exact element={<New />} />
       </Routes>
     </Router>
@@ -57,20 +37,43 @@ function App() {
 }
 
 const Home = (props) => {
+  const { isLoading, todoList, setTodoList, onAddTodo } = props;
   return (
     <div className="container">
       <img className={style.checklistIcon} src={checklistIcon} />
       <h1>Todo List</h1>
-      <AddTodoForm onAddTodo={props.addTodo} />
-      {props.isLoading ? <p>Loading...</p> : <TodoList todoList={props.todoList} onRemoveTodo={props.onRemoveTodo} />}
+      <AddTodoForm todoList={todoList} setTodoList={setTodoList} onAddTodo={onAddTodo} />
+      {isLoading ? <p>Loading...</p> : <TodoList todoList={todoList} setTodoList={setTodoList} />}
     </div>
   );
 };
 
 const New = () => {
+  const [data, setData] = useState([]);
+  const [singleItem, setSingleItem] = useState("");
+
+  const handleChange = (event) => {
+    setSingleItem(event.target.value);
+  };
+
+  const addItem = () => {
+    setData([...data, singleItem]);
+  };
+  console.log(data);
+
   return (
     <>
       <h1>New Todo List</h1>
+      <label htmlFor="todoInput">Title</label>
+      <input id="todoInput" type="text" onChange={handleChange} />
+      <button type="button" onClick={addItem}>
+        Add
+      </button>
+      <ul>
+        {data.map((item) => {
+          return <li key={item}>{item}</li>;
+        })}
+      </ul>
     </>
   );
 };
