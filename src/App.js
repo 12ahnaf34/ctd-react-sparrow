@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import AddTodoForm from "./AddTodoForm";
-import TodoList from "./TodoList";
+import AddTodoForm from "./components/AddTodoForm";
+import TodoList from "./components/TodoList";
 import style from "./styles.module.css";
 import checklistIcon from "./svgs/checklist.svg";
-import Airtable, { createTodo, initialFetchList } from "./api/Airtable";
-import fetchTodo from "./api/Airtable";
-
-// const base = new Airtable({ apiKey: "keyYsPzdK44dRGy6F" }).base("appKF1Bhdb3sx1dpu");
+import { createTodo, initialFetchList } from "./api/Airtable";
 
 function App() {
   //This is the list of todo items and a state checker to see if page is loading

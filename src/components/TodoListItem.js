@@ -1,5 +1,5 @@
 import React from "react";
-import stylez from "./styles.module.css";
+import stylez from "../styles.module.css";
 import style from "./TodoListItem.module.css";
 import Airtable from "airtable";
 import TodoList from "./TodoList";
@@ -21,7 +21,7 @@ function TodoListItem(props) {
   }
 
   return (
-    <li key={item.id} className={style.ListItem}>
+    <li className={style.ListItem}>
       {item.fields.Title}
       <button className={stylez.removeButton} onClick={() => removeTodo(item.id)}>
         X
