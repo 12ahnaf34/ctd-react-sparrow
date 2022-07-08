@@ -1,21 +1,17 @@
 import React from "react";
 import stylez from "../styles.module.css";
 import style from "./TodoListItem.module.css";
-import Airtable from "airtable";
-import TodoList from "./TodoList";
-
-const base = new Airtable({ apiKey: "keyYsPzdK44dRGy6F" }).base("appKF1Bhdb3sx1dpu");
+import PropTypes from "prop-types";
 
 function TodoListItem(props) {
   const { item, todoList, setTodoList } = props;
 
   function removeTodo(id) {
-    base("Default").destroy(id, function (err, deletedRecord) {
-      if (err) {
-        console.error(err);
-        return;
-      }
-    });
+    fetch(`https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/default/${id}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}` },
+    }).then((response) => console.log("deleted todo list item"));
+
     const filteredList = todoList.filter((item) => item.id !== id);
     setTodoList(filteredList);
   }
@@ -29,5 +25,11 @@ function TodoListItem(props) {
     </li>
   );
 }
+
+TodoListItem.propTypes = {
+  item: PropTypes.object,
+  todoList: PropTypes.array,
+  setTodoList: PropTypes.func,
+};
 
 export default TodoListItem;

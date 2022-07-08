@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TodoListItem from "./TodoListItem";
 import style from "../styles.module.css";
+import PropTypes from "prop-types";
 
 const TodoList = (props) => {
   const { todoList, setTodoList } = props;
@@ -12,18 +13,18 @@ const TodoList = (props) => {
       setSortState(false);
       setText("Sort Z-A");
       const sortedList = todoList.sort((objectA, objectB) => {
-        if (objectA.fields.Title < objectB.fields.Title) return -1;
-        if (objectA.fields.Title === objectB.fields.Title) return 0;
-        if (objectA.fields.Title > objectB.fields.Title) return 1;
+        if (objectA.fields.Title.toLowerCase() < objectB.fields.Title.toLowerCase()) return -1;
+        if (objectA.fields.Title.toLowerCase() === objectB.fields.Title.toLowerCase()) return 0;
+        if (objectA.fields.Title.toLowerCase() > objectB.fields.Title.toLowerCase()) return 1;
       });
       setTodoList(sortedList);
     } else {
       setSortState(true);
       setText("Sort A-Z");
       const sortedList = todoList.sort((objectA, objectB) => {
-        if (objectA.fields.Title < objectB.fields.Title) return 1;
-        if (objectA.fields.Title === objectB.fields.Title) return 0;
-        if (objectA.fields.Title > objectB.fields.Title) return -1;
+        if (objectA.fields.Title.toLowerCase() < objectB.fields.Title.toLowerCase()) return 1;
+        if (objectA.fields.Title.toLowerCase() === objectB.fields.Title.toLowerCase()) return 0;
+        if (objectA.fields.Title.toLowerCase() > objectB.fields.Title.toLowerCase()) return -1;
       });
       setTodoList(sortedList);
     }
@@ -41,6 +42,11 @@ const TodoList = (props) => {
       </ul>
     </div>
   );
+};
+
+TodoList.propTypes = {
+  todoList: PropTypes.array,
+  setTodoList: PropTypes.func,
 };
 
 export default TodoList;

@@ -4,13 +4,14 @@ import AddTodoForm from "./components/AddTodoForm";
 import TodoList from "./components/TodoList";
 import style from "./styles.module.css";
 import checklistIcon from "./svgs/checklist.svg";
-import { createTodo, initialFetchList } from "./api/Airtable";
+import initialFetchList, { createTodo } from "./components/Airtable";
 
 function App() {
   //This is the list of todo items and a state checker to see if page is loading
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  //Initial load of todoList from Airtable
   useEffect(() => {
     initialFetchList(setTodoList, setIsLoading);
   }, []);
@@ -21,10 +22,6 @@ function App() {
 
   return (
     <Router>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/new">New</Link>
-      </nav>
       <Routes>
         <Route path="/" exact element={<Home isLoading={isLoading} todoList={todoList} setTodoList={setTodoList} onAddTodo={addTodo} />} />
         <Route path="/new" exact element={<New />} />
@@ -36,9 +33,15 @@ function App() {
 const Home = (props) => {
   const { isLoading, todoList, setTodoList, onAddTodo } = props;
   return (
-    <div className="container">
-      <img className={style.checklistIcon} src={checklistIcon} />
-      <h1>Todo List</h1>
+    <div className={style.container}>
+      <div className={style.header}>
+        <nav className={style.navbar}>
+          <Link to="/">Home</Link>
+          <Link to="/new">New</Link>
+        </nav>
+        <img className={style.checklistIcon} src={checklistIcon} alt="Icon" title="TodoListIcon" />
+        <h1>Todo List</h1>
+      </div>
       <AddTodoForm todoList={todoList} setTodoList={setTodoList} onAddTodo={onAddTodo} />
       {isLoading ? <p>Loading...</p> : <TodoList todoList={todoList} setTodoList={setTodoList} />}
     </div>
