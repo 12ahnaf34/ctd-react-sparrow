@@ -4,7 +4,7 @@ import style from "../styles.module.css";
 import PropTypes from "prop-types";
 
 const TodoList = (props) => {
-  const { todoList, setTodoList } = props;
+  const { todoList, setTodoList, onRemoveTodo } = props;
   const [sortState, setSortState] = useState(true);
   const [text, setText] = useState("Sort A-Z");
 
@@ -37,7 +37,7 @@ const TodoList = (props) => {
       </button>
       <ul className={style.todoList}>
         {todoList.map(function (item) {
-          return <TodoListItem key={item.id} item={item} todoList={todoList} setTodoList={setTodoList} />;
+          return <TodoListItem key={item.id} item={item} todoList={todoList} setTodoList={setTodoList} onRemoveTodo={onRemoveTodo} />;
         })}
       </ul>
     </div>
@@ -47,6 +47,7 @@ const TodoList = (props) => {
 TodoList.propTypes = {
   todoList: PropTypes.array,
   setTodoList: PropTypes.func,
+  onRemoveTodo: PropTypes.func,
 };
 
 export default TodoList;
