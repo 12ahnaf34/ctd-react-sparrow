@@ -58,6 +58,15 @@ label {
   cursor: pointer;
 }
 
+.sortButton {
+  background-color: darkgreen;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
 .todoList {
   border: 5px solid white;
   padding: 50px 40px;

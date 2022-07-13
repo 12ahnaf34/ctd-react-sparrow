@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import InputWithLabel from "./InputWithLabel";
-import style from "./styles.module.css";
+import style from "../styles.module.css";
 
 const AddTodoForm = (props) => {
   const { setTodoList, todoList, onAddTodo } = props;
