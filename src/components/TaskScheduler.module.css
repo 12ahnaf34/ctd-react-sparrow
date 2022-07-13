@@ -1,0 +1,119 @@
+ul {
+  list-style: none;
+}
+
+li:before {
+  content: "\25AA";
+  padding: 10px;
+  color: #eeeeee;
+  text-shadow: 2px 2px 2px #548ca8;
+}
+
+.addButton {
+  background-color: #548ca8;
+  width: fit-content;
+  height: fit-content;
+  color: white;
+  border: 2px solid #548ca8;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.addButton:hover,
+.sortButton:hover {
+  background-color: #476072;
+  color: #eeeeee;
+  border: 2px solid #476072;
+}
+
+.taskScheduler {
+  border: 10px solid #548ca8;
+  /* box-shadow: 10px 10px #548ca8; */
+  border-radius: 20px;
+  background-color: #334257;
+  color: #eeeeee;
+  padding: 50px 60px;
+  width: fit-content;
+  margin-top: 20px;
+  margin-left: 5px;
+  grid-column-start: 2;
+  height: fit-content;
+  text-align: left;
+  font-size: 40px;
+}
+
+.navbar {
+  margin-top: 0px;
+  width: fit-content;
+  /* border: 5px solid black; */
+}
+
+.navbar a {
+  font-size: 45px;
+}
+
+.removeButton {
+  color: #fff;
+  font-weight: 600;
+  background-color: #548ca8;
+  border: 2px solid #548ca8;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  vertical-align: 3px;
+  font-size: 25px;
+  text-align: center;
+}
+
+.removeButton:hover {
+  background-color: #eeeeee;
+  color: #548ca8;
+  border: 2px solid #eeeeee;
+  font-weight: bold;
+}
+
+.dateInput {
+  font-family: Calibri;
+  background-color: azure;
+  border: 2px solid #548ca8;
+  border-radius: 5px;
+  color: #476072;
+  text-transform: uppercase;
+}
+
+.titleInput {
+  background-color: azure;
+  border: 2px solid #548ca8;
+  border-radius: 5px;
+  margin-top: 5px;
+  color: #476072;
+}
+
+@media (max-width: 690px) {
+  li {
+    font-size: 15px;
+  }
+  .navbar a {
+    font-size: 20px;
+  }
+  .navbar a:nth-child(2) {
+    display: none;
+  }
+  h1 {
+    font-size: 80px;
+  }
+  .removeButton {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 330px) {
+  li {
+    width: 60vw;
+  }
+  .taskScheduler {
+    padding: 40px 40px;
+  }
+}

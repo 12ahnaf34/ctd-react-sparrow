@@ -1,15 +1,14 @@
 import React from "react";
-import stylez from "../styles.module.css";
 import style from "./TodoListItem.module.css";
 import PropTypes from "prop-types";
 
 function TodoListItem(props) {
-  const { item, onRemoveTodo } = props;
+  const { todo, onRemoveTodo } = props;
 
   return (
-    <li className={style.ListItem}>
-      {item.fields.Title}
-      <button className={stylez.removeButton} onClick={() => onRemoveTodo(item.id)}>
+    <li className={style.listItem}>
+      {todo.fields.Title}
+      <button className={style.removeButton} onClick={() => onRemoveTodo(todo.id)}>
         X
       </button>
     </li>
@@ -17,7 +16,7 @@ function TodoListItem(props) {
 }
 
 TodoListItem.propTypes = {
-  item: PropTypes.object,
+  todo: PropTypes.object,
   onRemoveTodo: PropTypes.func,
 };
 

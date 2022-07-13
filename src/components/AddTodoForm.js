@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import InputWithLabel from "./InputWithLabel";
-import style from "../styles.module.css";
+import style from "./AddTodoForm.module.css";
 import PropTypes from "prop-types";
 
 const AddTodoForm = (props) => {
@@ -10,14 +10,12 @@ const AddTodoForm = (props) => {
 
   //Saves todo title to todoTitle variable
   const handleTitleChange = (event) => {
-    const newTodoTitle = event.target.value;
-    setTodoTitle(newTodoTitle);
+    setTodoTitle(event.target.value);
   };
 
   //Passes new todo object to App.js->addTodo function
   const handleAddTodo = (event) => {
     event.preventDefault();
-    setTodoTitle(todoTitle);
 
     onAddTodo(todoTitle);
     setTodoTitle("");
