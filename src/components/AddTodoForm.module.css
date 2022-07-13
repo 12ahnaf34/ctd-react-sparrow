@@ -1,0 +1,25 @@
+.addButton {
+  background-color: #548ca8;
+  color: white;
+  border: 2px solid #548ca8;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.addButton:hover {
+  background-color: #476072;
+  color: #eeeeee;
+  border: 2px solid #476072;
+}
+
+@media (max-width: 500px) {
+  input {
+    width: 50vw;
+  }
+
+  .addButton {
+    font-size: 4vw;
+  }
+}

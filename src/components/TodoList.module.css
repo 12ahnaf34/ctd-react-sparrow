@@ -1,0 +1,42 @@
+.sortButton {
+  background-color: #548ca8;
+  color: white;
+  border: 2px solid #548ca8;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 0px;
+  cursor: pointer;
+}
+
+.todoList {
+  display: inline-block;
+  border: 10px solid #548ca8;
+  /* box-shadow: 10px 10px #548ca8; */
+  border-radius: 20px;
+  background-color: #334257;
+  color: #eeeeee;
+  padding: 50px 150px;
+  width: fit-content;
+  margin-top: 20px;
+  grid-column-start: 2;
+  height: fit-content;
+  text-align: left;
+  font-size: 40px;
+}
+
+.addButton:hover,
+.sortButton:hover {
+  background-color: #476072;
+  color: #eeeeee;
+  border: 2px solid #476072;
+}
+
+@media (max-width: 530px) {
+  .sortButton {
+    font-size: 4vw;
+  }
+
+  .todoList {
+    padding: 50px 50px;
+  }
+}

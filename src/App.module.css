@@ -1,0 +1,186 @@
+html,
+#root {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #eeeeee;
+  color: #ccc;
+  font-family: Calibri;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  margin: 10px;
+  font-size: 40px;
+  text-decoration: none;
+  color: #476072;
+}
+
+form {
+  margin: 0;
+  height: 60px;
+}
+
+h1 {
+  font-family: "Overpass";
+  font-size: 140px;
+  font-weight: 600;
+  color: #548ca8;
+  margin: auto;
+  margin-bottom: 5px;
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
+
+label {
+  font-weight: 600;
+  color: #548ca8;
+  font-size: 30px;
+  text-align: center;
+  vertical-align: -2px;
+  margin: 5px;
+}
+
+ul {
+  list-style: none;
+}
+
+li:before {
+  content: "\25AA";
+  padding: 10px;
+  color: #eeeeee;
+  text-shadow: 2px 2px 2px #548ca8;
+}
+
+.container {
+  display: grid;
+  background-color: #eeeeee;
+  width: 100vw;
+  gap: 5px;
+  text-align: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 300px 50px 10px 15fr;
+}
+
+.container div:nth-child(3) {
+  grid-row: 4/5;
+}
+
+.checklistIcon {
+  height: 120px;
+  width: 120px;
+  vertical-align: -8px;
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
+
+.dateInput {
+  font-family: Calibri;
+}
+
+.header {
+  display: grid;
+  width: 100vw;
+  height: fit-content;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 5px;
+  height: 50px;
+}
+
+.header:nth-child(2) {
+  text-align: center;
+}
+
+.loadingText {
+  background-color: #548ca8;
+  color: #eeeeee;
+  width: fit-content;
+  height: fit-content;
+  text-align: center;
+  margin: auto;
+  margin-top: 80px;
+  border: 5px solid #334257;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 40px;
+}
+
+.navbar {
+  margin-top: 0px;
+  width: fit-content;
+  /* border: 5px solid black; */
+}
+
+.navbar a {
+  font-size: 45px;
+}
+
+@media (max-width: 1688px) {
+  .navbar {
+    display: grid;
+    grid-template-rows: 50px 50px;
+  }
+  .navbar a {
+    font-size: 3vw;
+  }
+}
+
+@media (max-width: 1406px) {
+  .container {
+    grid-template-rows: 450px 50px 10px 15fr;
+  }
+  .navbar {
+    display: grid;
+    grid-template-rows: 45px 45px;
+  }
+}
+
+@media (max-width: 874px) {
+  .container {
+    grid-template-rows: 500px 50px 10px 15fr;
+  }
+}
+
+@media (max-width: 530px) {
+  h1 {
+    font-size: 40px;
+  }
+  input {
+    width: 50vw;
+  }
+  .checklistIcon {
+    height: 50px;
+    width: 50px;
+  }
+  .container {
+    width: 90vw;
+    grid-template-rows: 200px 50px 10px 15fr;
+  }
+  .header {
+    grid-template-columns: 120px 1fr 1fr;
+  }
+  .navbar a {
+    font-size: 12px;
+  }
+  .navbar a:nth-child(1) {
+    display: none;
+  }
+  .removeButton {
+    font-size: 6vw;
+  }
+}
+
+@media (max-width: 355px) {
+  .header {
+    grid-template-rows: 160px;
+    grid-template-columns: 100px 1fr 1fr;
+  }
+}
+
+@font-face {
+  font-family: "Overpass";
+  src: local("Overpass"), url(./fonts/overpass-desktop-fonts/overpass/overpass-bold.otf);
+}
