@@ -70,7 +70,7 @@ function Home(props) {
         </nav>
         <h1>
           <img className={style.checklistIcon} src={checklistIcon} alt="Icon" title="TodoListIcon" />
-          Todo List
+          <span className={style.title}>Todo List</span>
         </h1>
       </div>
       <AddTodoForm todoList={todoList} setTodoList={setTodoList} onAddTodo={onAddTodo} />
