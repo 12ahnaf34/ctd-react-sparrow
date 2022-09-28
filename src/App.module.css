@@ -118,6 +118,10 @@ li:before {
   font-size: 45px;
 }
 
+.title {
+  display: block;
+}
+
 @media (max-width: 1688px) {
   .navbar {
     display: grid;
@@ -142,6 +146,9 @@ li:before {
   .container {
     grid-template-rows: 500px 50px 10px 15fr;
   }
+  .title {
+    display: none;
+  }
 }
 
 @media (max-width: 530px) {
@@ -152,8 +159,7 @@ li:before {
     width: 50vw;
   }
   .checklistIcon {
-    height: 50px;
-    width: 50px;
+    display: none;
   }
   .container {
     width: 90vw;
@@ -163,7 +169,7 @@ li:before {
     grid-template-columns: 100px 1fr 1fr;
   }
   .navbar a {
-    font-size: 12px;
+    font-size: 25px;
   }
   .navbar a:nth-child(1) {
     display: none;
