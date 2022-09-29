@@ -5,7 +5,6 @@ import { createTaskSchedulerTodo, initialTaskSchedulerList } from "./Airtable";
 import PropTypes from "prop-types";
 import Date from "./Date";
 import moment from "moment";
-import Calendar from "react-calendar";
 
 function TaskScheduler(props) {
   const [upcomingTasksList, setUpcomingTasksList] = useState([]);
@@ -16,7 +15,7 @@ function TaskScheduler(props) {
 
   useEffect(() => {
     initialTaskSchedulerList(setUpcomingTasksList, setLoading, sortState, setSortState);
-  }, []);
+  }, [sortState]);
 
   const handleTitleChange = (event) => {
     setNewTitle(event.target.value);
@@ -83,23 +82,26 @@ function TaskScheduler(props) {
         {sortState ? "Newest - Oldest" : "Oldest - Newest"}
       </button>
       <br />
-
-      <ul className={style.taskScheduler}>
-        {upcomingTasksList.map((item) => {
-          if (item.fields.Upcoming !== " ") {
-            return (
-              <li key={item.id}>
-                {item.fields.Upcoming}
-                {"  "}
-                <Date date={item.fields.Date} />
-                <button className={style.removeButton} onClick={() => removeTask(item.id)}>
-                  X
-                </button>{" "}
-              </li>
-            );
-          }
-        })}
-      </ul>
+      {loading ? (
+        <span className={style.loadingText}>Loading...</span>
+      ) : (
+        <ul className={style.taskScheduler}>
+          {upcomingTasksList.map((item) => {
+            if (item.fields.Upcoming !== " ") {
+              return (
+                <li key={item.id}>
+                  {item.fields.Upcoming}
+                  {"  "}
+                  <Date date={item.fields.Date} />
+                  <button className={style.removeButton} onClick={() => removeTask(item.id)}>
+                    X
+                  </button>{" "}
+                </li>
+              );
+            }
+          })}
+        </ul>
+      )}
     </div>
   );
 }

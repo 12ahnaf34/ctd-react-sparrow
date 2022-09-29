@@ -1,8 +1,6 @@
 import React from "react";
 import style from "./TodoListItem.module.css";
 import PropTypes from "prop-types";
-import Airtable from "airtable";
-import TodoList from "./TodoList";
 
 function TodoListItem(props) {
   const { todo, onRemoveTodo } = props;

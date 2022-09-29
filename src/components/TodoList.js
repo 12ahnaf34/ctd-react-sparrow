@@ -13,18 +13,30 @@ const TodoList = (props) => {
       setSortState(false);
       setText("Z - A");
       const sortedList = todoList.sort((objectA, objectB) => {
-        if (objectA.fields.Title.toLowerCase() < objectB.fields.Title.toLowerCase()) return 1;
-        if (objectA.fields.Title.toLowerCase() === objectB.fields.Title.toLowerCase()) return 0;
-        if (objectA.fields.Title.toLowerCase() > objectB.fields.Title.toLowerCase()) return -1;
+        if (objectA.fields.Title.toLowerCase() < objectB.fields.Title.toLowerCase()) {
+          return 1;
+        }
+        if (objectA.fields.Title.toLowerCase() === objectB.fields.Title.toLowerCase()) {
+          return 0;
+        }
+        if (objectA.fields.Title.toLowerCase() > objectB.fields.Title.toLowerCase()) {
+          return -1;
+        }
       });
       setTodoList(sortedList);
     } else {
       setSortState(true);
       setText("A - Z");
       const sortedList = todoList.sort((objectA, objectB) => {
-        if (objectA.fields.Title.toLowerCase() < objectB.fields.Title.toLowerCase()) return -1;
-        if (objectA.fields.Title.toLowerCase() === objectB.fields.Title.toLowerCase()) return 0;
-        if (objectA.fields.Title.toLowerCase() > objectB.fields.Title.toLowerCase()) return 1;
+        if (objectA.fields.Title.toLowerCase() < objectB.fields.Title.toLowerCase()) {
+          return -1;
+        }
+        if (objectA.fields.Title.toLowerCase() === objectB.fields.Title.toLowerCase()) {
+          return 0;
+        }
+        if (objectA.fields.Title.toLowerCase() > objectB.fields.Title.toLowerCase()) {
+          return 1;
+        }
       });
       setTodoList(sortedList);
     }
