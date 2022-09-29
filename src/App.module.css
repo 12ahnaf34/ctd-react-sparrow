@@ -62,7 +62,7 @@ li:before {
   gap: 5px;
   text-align: center;
   grid-template-columns: 1fr;
-  grid-template-rows: 300px 50px 10px 15fr;
+  grid-template-rows: 400px 50px 10px 15fr;
 }
 
 .container div:nth-child(3) {
@@ -139,6 +139,12 @@ li:before {
   .navbar {
     display: grid;
     grid-template-rows: 45px 45px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .title {
+    display: none;
   }
 }
 
