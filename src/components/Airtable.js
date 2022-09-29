@@ -1,6 +1,3 @@
-import Airtable from "airtable";
-import React from "react";
-import PropTypes from "prop-types";
 import moment from "moment";
 
 function initialTaskSchedulerList(setList, setLoading, sortState, setSortState) {
@@ -9,17 +6,19 @@ function initialTaskSchedulerList(setList, setLoading, sortState, setSortState) 
   })
     .then((response) => response.json())
     .then((result) => {
-      const sortedList = result.records
-        .filter((item) => item.fields.Date !== " ")
-        .sort((a, b) => {
-          const d1 = moment(a.fields.Date);
-          const d2 = moment(b.fields.Date);
-          if (sortState) {
-            setSortState(false);
-            return d1 - d2;
-          }
-        });
-      setList(sortedList);
+      const data = result.records.filter((item) => {
+        if (item.fields.Date !== " ") return item.fields;
+      });
+      data.sort((a, b) => {
+        const d1 = moment(a.fields.Date);
+        const d2 = moment(b.fields.Date);
+        if (sortState) {
+          return d1 - d2;
+        } else {
+          return d2 - d1;
+        }
+      });
+      setList(data);
       setLoading(false);
     })
     .catch((error) => {
@@ -34,12 +33,17 @@ function initialFetchList(setList, setLoading) {
     .then((response) => response.json())
     .then((result) => {
       const sortedList = result.records.sort((objectA, objectB) => {
-        if (objectA.fields.Title.toLowerCase() < objectB.fields.Title.toLowerCase()) return -1;
-        if (objectA.fields.Title.toLowerCase() === objectB.fields.Title.toLowerCase()) return 0;
-        if (objectA.fields.Title.toLowerCase() > objectB.fields.Title.toLowerCase()) return 1;
+        if (objectA.fields.Title.toLowerCase() < objectB.fields.Title.toLowerCase()) {
+          return -1;
+        } else if (objectA.fields.Title.toLowerCase() === objectB.fields.Title.toLowerCase()) {
+          return 0;
+        } else if (objectA.fields.Title.toLowerCase() > objectB.fields.Title.toLowerCase()) {
+          return 1;
+        }
       });
       setList(sortedList);
       setLoading(false);
+      return;
     })
     .catch((error) => {
       console.log(error);
@@ -59,18 +63,27 @@ function createTodo(newTitle, list, setList, sortState) {
 
       if (sortState) {
         const sortedList = newList.sort((objectA, objectB) => {
-          if (objectA.fields.Title.toLowerCase() < objectB.fields.Title.toLowerCase()) return -1;
-          if (objectA.fields.Title.toLowerCase() === objectB.fields.Title.toLowerCase()) return 0;
-          if (objectA.fields.Title.toLowerCase() > objectB.fields.Title.toLowerCase()) return 1;
+          if (objectA.fields.Title.toLowerCase() < objectB.fields.Title.toLowerCase()) {
+            return -1;
+          } else if (objectA.fields.Title.toLowerCase() === objectB.fields.Title.toLowerCase()) {
+            return 0;
+          } else if (objectA.fields.Title.toLowerCase() > objectB.fields.Title.toLowerCase()) {
+            return 1;
+          }
         });
         setList(sortedList);
       } else {
         const sortedList = newList.sort((objectA, objectB) => {
-          if (objectA.fields.Title.toLowerCase() < objectB.fields.Title.toLowerCase()) return 1;
-          if (objectA.fields.Title.toLowerCase() === objectB.fields.Title.toLowerCase()) return 0;
-          if (objectA.fields.Title.toLowerCase() > objectB.fields.Title.toLowerCase()) return -1;
+          if (objectA.fields.Title.toLowerCase() < objectB.fields.Title.toLowerCase()) {
+            return 1;
+          } else if (objectA.fields.Title.toLowerCase() === objectB.fields.Title.toLowerCase()) {
+            return 0;
+          } else if (objectA.fields.Title.toLowerCase() > objectB.fields.Title.toLowerCase()) {
+            return -1;
+          }
         });
         setList(sortedList);
+        return;
       }
     });
 }
@@ -103,6 +116,7 @@ function createTaskSchedulerTodo(newTitle, newDate, list, setList, sortState, se
           }
         });
       setList(sortedList);
+      return;
     });
 }
 
