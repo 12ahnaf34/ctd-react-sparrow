@@ -13,9 +13,9 @@ function initialTaskSchedulerList(setList, setLoading, sortState, setSortState) 
         const d1 = moment(a.fields.Date);
         const d2 = moment(b.fields.Date);
         if (sortState) {
-          return d1 - d2;
-        } else {
           return d2 - d1;
+        } else {
+          return d1 - d2;
         }
       });
       setList(data);
