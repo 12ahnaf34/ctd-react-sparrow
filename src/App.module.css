@@ -84,7 +84,6 @@ li:before {
 .header {
   display: grid;
   width: 100vw;
-  height: fit-content;
   grid-template-columns: 1fr 2fr 1fr;
   gap: 5px;
   height: 50px;
@@ -98,7 +97,6 @@ li:before {
   background-color: #548ca8;
   color: #eeeeee;
   width: fit-content;
-  height: fit-content;
   text-align: center;
   margin: auto;
   margin-top: 80px;
