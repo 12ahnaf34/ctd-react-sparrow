@@ -169,10 +169,10 @@ li:before {
   }
   .container {
     width: 90vw;
-    grid-template-rows: 200px 50px 10px 15fr;
+    grid-template-rows: 300px 50px 10px 15fr;
   }
   .header {
-    grid-template-columns: 120px 1fr 1fr;
+    grid-template-columns: 100px 1fr 1fr;
   }
   .navbar a {
     font-size: 25px;
@@ -187,8 +187,7 @@ li:before {
 
 @media (max-width: 355px) {
   .header {
-    grid-template-rows: 160px;
-    grid-template-columns: 100px 1fr 1fr;
+    grid-template-columns: 40px 200px 100px;
   }
 }
 
