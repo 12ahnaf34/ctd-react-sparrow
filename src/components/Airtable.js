@@ -7,7 +7,7 @@ function initialTaskSchedulerList(setList, setLoading, sortState, setSortState) 
     .then((response) => response.json())
     .then((result) => {
       const data = result.records.filter((item) => {
-        if (item.fields.Date !== " ") return item.fields;
+        if (item.fields.Date !== " ") {return item.fields};
       });
       data.sort((a, b) => {
         const d1 = moment(a.fields.Date);
@@ -17,9 +17,11 @@ function initialTaskSchedulerList(setList, setLoading, sortState, setSortState) 
         } else {
           return d2 - d1;
         }
+        return;
       });
       setList(data);
       setLoading(false);
+      return;
     })
     .catch((error) => {
       console.log(error);
@@ -40,6 +42,7 @@ function initialFetchList(setList, setLoading) {
         } else if (objectA.fields.Title.toLowerCase() > objectB.fields.Title.toLowerCase()) {
           return 1;
         }
+        return;
       });
       setList(sortedList);
       setLoading(false);
@@ -70,6 +73,7 @@ function createTodo(newTitle, list, setList, sortState) {
           } else if (objectA.fields.Title.toLowerCase() > objectB.fields.Title.toLowerCase()) {
             return 1;
           }
+          return;
         });
         setList(sortedList);
       } else {
@@ -81,6 +85,7 @@ function createTodo(newTitle, list, setList, sortState) {
           } else if (objectA.fields.Title.toLowerCase() > objectB.fields.Title.toLowerCase()) {
             return -1;
           }
+          return;
         });
         setList(sortedList);
         return;
@@ -114,6 +119,7 @@ function createTaskSchedulerTodo(newTitle, newDate, list, setList, sortState, se
             setSortState(true);
             return d2 - d1;
           }
+          return;
         });
       setList(sortedList);
       return;
