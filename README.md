@@ -1,8 +1,8 @@
 # Todo List
 
-Video - https://youtu.be/Iz2IoUbu9jU
+#### Video - https://youtu.be/Iz2IoUbu9jU
 
-Live Link - https://todolist-7149e4.netlify.app
+#### Site - https://todolist-7149e4.netlify.app
 
 ![](Screenshot.png)
 
